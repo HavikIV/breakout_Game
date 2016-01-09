@@ -1,0 +1,9 @@
+﻿  brickBallGame.cpp
+e:\users\havik\documents\visual studio 2015\projects\brick_and_ball_game\brick_and_ball_game\brickBallGame.h(24): warning C4677: 'bCollection': signature of non-private member contains assembly private type 'brick::brickBox'
+  e:\users\havik\documents\visual studio 2015\projects\brick_and_ball_game\brick_and_ball_game\Brick.h(25): note: see declaration of 'brick::brickBox'
+e:\users\havik\documents\visual studio 2015\projects\brick_and_ball_game\brick_and_ball_game\brickBallGame.h(26): warning C4677: 'gPaddle': signature of non-private member contains assembly private type 'paddle::paddleBox'
+  e:\users\havik\documents\visual studio 2015\projects\brick_and_ball_game\brick_and_ball_game\Paddle.h(23): note: see declaration of 'paddle::paddleBox'
+e:\users\havik\documents\visual studio 2015\projects\brick_and_ball_game\brick_and_ball_game\brickBallGame.h(35): warning C4677: 'gBall': signature of non-private member contains assembly private type 'ball::ballBox'
+  e:\users\havik\documents\visual studio 2015\projects\brick_and_ball_game\brick_and_ball_game\Ball.h(19): note: see declaration of 'ball::ballBox'
+brickBallGame.cpp(240): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Brick_and_Ball_Game.vcxproj -> E:\Users\Havik\Documents\Visual Studio 2015\Projects\Brick_and_Ball_Game\Debug\Brick_and_Ball_Game.exe
