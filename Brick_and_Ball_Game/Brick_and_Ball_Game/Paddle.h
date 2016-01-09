@@ -37,16 +37,14 @@ namespace paddle
 		// destructor
 		// destroys the paddle once the game is closed
 
+		void createPaddle();
+		// function to load the settings for the paddle pictureBox
+
 		void movePaddle(int);
 		// function to move the paddle
 		// takes either a positive or negative int value
 		// the value is used to move the paddle either left or right
 		// positive for moving to the right and negative for moving to the left
-
-		void launchBall(/*&ball*/);
-		// Function for launching the ball when the level first starts
-		// or when the player is using the next life,
-		// the function needs the ball to be passed to it.
 
 	private:
 		int locX, locY;

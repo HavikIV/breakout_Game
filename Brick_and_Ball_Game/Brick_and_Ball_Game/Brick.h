@@ -47,7 +47,7 @@ namespace brick
 		//will adjust the color of the brick based on its new health
 
 		void createBrick();
-		// Function to load the setting for the picturebox
+		// Function to load the setting for the brick pictureBox
 
 		void modifyBrick(int, int, int , int);
 		//Function to modify the brick after it's been created

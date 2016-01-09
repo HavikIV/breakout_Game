@@ -22,21 +22,19 @@ namespace Brick_and_Ball_Game {
 	{
 	public:
 		cli::array<brickBox^> ^ bCollection; // an empty array of brickBoxes?
-		//cli::array<paddleBox^>^ gPaddle;
 		paddleBox gPaddle;
-	private: System::Windows::Forms::Timer^  gAnimation;
-	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::Label^  label2;
-
-
-	public:
-
-	public:
 		ballBox gBall;
+	private: System::Windows::Forms::Label^  lblScore;
+	private: System::Windows::Forms::Label^  lblLifes;
+	public:
+	private: System::Windows::Forms::Timer^  gAnimation;
+
+	public:
+
+	public:
 		brickBallGame(void)
 		{
-			bCollection = gcnew cli::array<brickBox^>(30);
-			//gPaddle = gcnew cli::array<paddleBox^>(1);
+			bCollection = gcnew cli::array<brickBox^>(100);
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -77,39 +75,38 @@ namespace Brick_and_Ball_Game {
 		{
 			this->components = (gcnew System::ComponentModel::Container());
 			this->gAnimation = (gcnew System::Windows::Forms::Timer(this->components));
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->lblScore = (gcnew System::Windows::Forms::Label());
+			this->lblLifes = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// gAnimation
 			// 
+			this->gAnimation->Interval = 1;
 			this->gAnimation->Tick += gcnew System::EventHandler(this, &brickBallGame::gAnimation_Tick);
 			// 
-			// label1
+			// lblScore
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(12, 239);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(35, 13);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"label1";
+			this->lblScore->AutoSize = true;
+			this->lblScore->Location = System::Drawing::Point(592, 9);
+			this->lblScore->Name = L"lblScore";
+			this->lblScore->Size = System::Drawing::Size(0, 13);
+			this->lblScore->TabIndex = 0;
 			// 
-			// label2
+			// lblLifes
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(237, 239);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(35, 13);
-			this->label2->TabIndex = 1;
-			this->label2->Text = L"label2";
+			this->lblLifes->AutoSize = true;
+			this->lblLifes->Location = System::Drawing::Point(12, 9);
+			this->lblLifes->Name = L"lblLifes";
+			this->lblLifes->Size = System::Drawing::Size(0, 13);
+			this->lblLifes->TabIndex = 1;
 			// 
 			// brickBallGame
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
+			this->ClientSize = System::Drawing::Size(639, 474);
+			this->Controls->Add(this->lblLifes);
+			this->Controls->Add(this->lblScore);
 			this->Name = L"brickBallGame";
 			this->Text = L"brickBallGame";
 			this->Load += gcnew System::EventHandler(this, &brickBallGame::brickBallGame_Load);
@@ -120,13 +117,22 @@ namespace Brick_and_Ball_Game {
 
 		}
 #pragma endregion
-	private: System::Void brickBallGame_Load(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void brickBallGame_Click(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void setupBricks(int level); //function to set up the bricks based on level
-	private: System::Void brickBallGame_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
-	private: System::Void runGame(); // runs the game, handles moving the ball, bascially keeps the ball moving
-	private: bool launchBall = false;
-	private: System::Void gAnimation_Tick(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void collisionCheck();
+	private: 
+		System::Void brickBallGame_Load(System::Object^  sender, System::EventArgs^  e);
+		System::Void brickBallGame_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void brickBallGame_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+		System::Void gAnimation_Tick(System::Object^  sender, System::EventArgs^  e);
+		System::Void setupBricks(int level); //function to set up the bricks based on level		
+		System::Void runGame(); // runs the game, handles moving the ball, basically keeps the ball moving with the timers help		
+		System::Void collisionCheck(); // runs all of the collision checks
+		System::Void formBounce(); // see if the ball needs to bounce from the walls of the form
+		System::Void brickBounce(); // see if the ball hit any of the balls and handles the resulting bouncing
+		System::Void paddleBounce(); // see if the ball hit the paddle and bounces it if it did
+		System::Void checkLifeLoss(); // checks to see if the player loses a life, this occurs when the ball is dropped through the bottom
+		System::Void gameOver(); // if the player loses all of his/her lives, ends the game.
+		bool launchBall = false; // whether or not the ball needs to be launched
+		int lifes = 3;	// the number of lives the player has remaining before game over, it doesn't count the starting life
+		int score = 0; // variable to keep track of the score
+
 };
 }

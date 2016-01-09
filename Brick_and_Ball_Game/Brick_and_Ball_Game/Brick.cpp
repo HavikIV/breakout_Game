@@ -62,6 +62,7 @@ void brickBox::createBrick()
 	brickPic->Location = System::Drawing::Point(locX, locY);
 	brickPic->Size = System::Drawing::Size(40, 16);
 	brickPic->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+	brickPic->Enabled = false;
 
 	//set the BackColor based on the health amount
 	switch (health)

@@ -28,6 +28,12 @@ namespace ball
 
 		ballBox(int, int);
 		// sets the location of the ball where the paddle is
+		
+		int getSpeedX();
+		// returns speedX
+
+		int getSpeedY();
+		// returns speedY
 
 		void setSpeedX(int);
 		// sets the speed the ball moves in the x direction
@@ -36,18 +42,18 @@ namespace ball
 		void setSpeedY(int);
 		// sets the speed that the ball moves in the y direction
 		// either positive or negative
-
-		void moveBall();
-		// moves the ball based on the speed in both directions
-
+		
 		void setLocX(int);
 		// moves the ball to the given x
 
-		int getSpeedX();
-		// returns speedX
+		void setLocY(int);
+		// moves the ball to the given y
 
-		int getSpeedY();
-		// returns speedY
+		void createBall();
+		// function to load the settings for the ball pictureBox
+
+		void moveBall();
+		// moves the ball based on the speed in both directions		
 
 		~ballBox();
 		// destroys the ball
