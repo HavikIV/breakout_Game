@@ -25,8 +25,9 @@ namespace Brick_and_Ball_Game {
 		//cli::array<paddleBox^>^ gPaddle;
 		paddleBox gPaddle;
 	private: System::Windows::Forms::Timer^  gAnimation;
-	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::Label^  label2;
+
+
+
 
 
 	public:
@@ -77,46 +78,24 @@ namespace Brick_and_Ball_Game {
 		{
 			this->components = (gcnew System::ComponentModel::Container());
 			this->gAnimation = (gcnew System::Windows::Forms::Timer(this->components));
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// gAnimation
 			// 
+			this->gAnimation->Interval = 1;
 			this->gAnimation->Tick += gcnew System::EventHandler(this, &brickBallGame::gAnimation_Tick);
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(12, 239);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(35, 13);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"label1";
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(237, 239);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(35, 13);
-			this->label2->TabIndex = 1;
-			this->label2->Text = L"label2";
 			// 
 			// brickBallGame
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(284, 261);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
 			this->Name = L"brickBallGame";
 			this->Text = L"brickBallGame";
 			this->Load += gcnew System::EventHandler(this, &brickBallGame::brickBallGame_Load);
 			this->Click += gcnew System::EventHandler(this, &brickBallGame::brickBallGame_Click);
 			this->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &brickBallGame::brickBallGame_MouseMove);
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion

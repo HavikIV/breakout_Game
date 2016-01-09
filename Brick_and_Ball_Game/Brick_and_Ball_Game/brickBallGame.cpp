@@ -91,18 +91,14 @@ System::Void brickBallGame::collisionCheck()
 		{
 			if (bCollection[i]->getHealth() != 0)
 			{
-				/*if (gBall.ballPic->Location.X <= bCollection[i]->brickPic->Location.X + 40
-					&& (gBall.ballPic->Location.Y >= bCollection[i]->brickPic->Location.Y
-						&& gBall.ballPic->Location.Y + 16 <= bCollection[i]->brickPic->Location.Y + 16))*/ // bounce off the right edge of the brick
-				/*if (gBall.ballPic->Location.Y <= bCollection[i]->brickPic->Location.Y + 16
-					&& gBall.ballPic->Location.Y >= bCollection[i]->brickPic->Location.Y)*/
 				if (gBall.ballPic->Location.Y + gBall.getSpeedY() <= bCollection[i]->brickPic->Location.Y + 16
-					&& gBall.ballPic->Location.Y + 16 + gBall.getSpeedY() >= bCollection[i]->brickPic->Location.Y)
+					&& gBall.ballPic->Location.Y + 16 + gBall.getSpeedY() >= bCollection[i]->brickPic->Location.Y
+					&& !(gBall.ballPic->Location.X + gBall.getSpeedX() >= bCollection[i]->brickPic->Location.X
+						&& gBall.ballPic->Location.X + 16 + gBall.getSpeedX() <= bCollection[i]->brickPic->Location.X + 40))
 				{
 					if (gBall.ballPic->Location.X + gBall.getSpeedX() <= bCollection[i]->brickPic->Location.X + 40
 						&& gBall.ballPic->Location.X + 16 > bCollection[i]->brickPic->Location.X + 40) // bounce off the right edge
 					{
-						label1->Text = "Right hit!";
 						gBall.ballPic->Location = System::Drawing::Point(bCollection[i]->brickPic->Location.X + 40, bCollection[i]->brickPic->Location.Y);
 						gBall.setSpeedX(2);
 						bCollection[i]->decreaseHealth();
@@ -111,63 +107,19 @@ System::Void brickBallGame::collisionCheck()
 					else if (gBall.ballPic->Location.X + 16 + gBall.getSpeedX() >= bCollection[i]->brickPic->Location.X
 						&& gBall.ballPic->Location.X < bCollection[i]->brickPic->Location.X) // bounce off the left edge
 					{
-						label1->Text = "Left hit!";
 						gBall.ballPic->Location = System::Drawing::Point(bCollection[i]->brickPic->Location.X - 16, bCollection[i]->brickPic->Location.Y);
 						gBall.setSpeedX(-2);
 						bCollection[i]->decreaseHealth();
 						break;
 					}
-					/*if (gBall.ballPic->Location.X <= bCollection[i]->brickPic->Location.X + 40)
-					{
-						gBall.setSpeedX(2);
-						bCollection[i]->decreaseHealth();
-						break;
-					}
-					else if (gBall.ballPic->Location.X + 16 >= bCollection[i]->brickPic->Location.X)
-					{
-						gBall.setSpeedX(-2);
-						bCollection[i]->decreaseHealth();
-						break;
-					}*/
-					/*gBall.ballPic->Location = System::Drawing::Point(bCollection[i]->brickPic->Location.X + 40, bCollection[i]->brickPic->Location.Y);
-					gBall.setSpeedX(2);
-					bCollection[i]->decreaseHealth();
-					break;*/
 				}
-				//else if (gBall.ballPic->Location.X + 16 <= bCollection[i]->brickPic->Location.X
-				//	&& (gBall.ballPic->Location.Y >= bCollection[i]->brickPic->Location.Y
-				//		&& gBall.ballPic->Location.Y + 16 <= bCollection[i]->brickPic->Location.Y + 16)) // bounce off the left edge of the brick
-				//{
-				//	gBall.setSpeedX(-2);
-				//	bCollection[i]->decreaseHealth();
-				//	break;
-				//}
-				//else if (gBall.ballPic->Location.Y + 16 <= bCollection[i]->brickPic->Location.Y
-				//	&& (gBall.ballPic->Location.X + 10 >= bCollection[i]->brickPic->Location.X
-				//		&& gBall.ballPic->Location.X <= bCollection[i]->brickPic->Location.X + 22)) // bounce off the top edge of the brick
-				//{
-				//	//gBall.ballPic->Location = System::Drawing::Point(bCollection[i]->brickPic->Location.X + 40, bCollection[i]->brickPic->Location.Y);
-				//	gBall.setSpeedY(-2);
-				//	bCollection[i]->decreaseHealth();
-				//	break;
-				//}
-				//else if (gBall.ballPic->Location.Y <= bCollection[i]->brickPic->Location.Y + 16
-				//	&& (gBall.ballPic->Location.X + 10 >= bCollection[i]->brickPic->Location.X
-				//		&& gBall.ballPic->Location.X <= bCollection[i]->brickPic->Location.X + 22)) // bounce off the bottom edge of the brick
-				//{
-				//	gBall.setSpeedY(2);
-				//	bCollection[i]->decreaseHealth();
-				//	break;
-				//}
 				else if (gBall.ballPic->Location.X + gBall.getSpeedX() >= bCollection[i]->brickPic->Location.X
 					&& gBall.ballPic->Location.X + 16 + gBall.getSpeedX() <= bCollection[i]->brickPic->Location.X + 40)
 				{
-					label2->Text = "Possible hit";
 					if (gBall.ballPic->Location.Y + 16 + gBall.getSpeedY() >= bCollection[i]->brickPic->Location.Y
 						&& gBall.ballPic->Location.Y < bCollection[i]->brickPic->Location.Y) // bounce off top
 					{
-						label2->Text = "Top hit!";
-						gBall.ballPic->Location = System::Drawing::Point(bCollection[i]->brickPic->Location.X, bCollection[i]->brickPic->Location.Y - 16);
+						gBall.ballPic->Location = System::Drawing::Point(gBall.ballPic->Location.X, bCollection[i]->brickPic->Location.Y - 16);
 						gBall.setSpeedY(-2);
 						bCollection[i]->decreaseHealth();
 						break;
@@ -175,8 +127,7 @@ System::Void brickBallGame::collisionCheck()
 					else if (gBall.ballPic->Location.Y + gBall.getSpeedY() <= bCollection[i]->brickPic->Location.Y + 16
 						&& gBall.ballPic->Location.Y + 16 > bCollection[i]->brickPic->Location.Y + 16) // bounce off bottom
 					{
-						label2->Text = "Bottom hit!";
-						gBall.ballPic->Location = System::Drawing::Point(bCollection[i]->brickPic->Location.X, bCollection[i]->brickPic->Location.Y + 16);
+						gBall.ballPic->Location = System::Drawing::Point(gBall.ballPic->Location.X, bCollection[i]->brickPic->Location.Y + 16);
 						gBall.setSpeedY(2);
 						bCollection[i]->decreaseHealth();
 						break;
